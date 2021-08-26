@@ -7,6 +7,7 @@
 
     public class DataContext : IdentityDbContext<User>
     {
+        public DbSet<Status> Statuses { get; set; }
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
