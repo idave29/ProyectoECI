@@ -19,44 +19,44 @@
             return _dataContext.Set<T>().AsNoTracking();
         }
 
-        public async Task<T> GetByIdAsyn(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _dataContext.Set<T>()
                 .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<T> FindByIdAsyn(int id)
+        public async Task<T> FindByIdAsync(int id)
         {
             return await _dataContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> CreateAsyn(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             await _dataContext.Set<T>().AddAsync(entity);
-            await SaveAllAsyn();
+            await SaveAllAsync();
             return entity;
         }
 
-        public async Task<T> UpdateAsyn(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             _dataContext.Set<T>().Update(entity);
-            await SaveAllAsyn();
+            await SaveAllAsync();
             return entity;
         }
 
-        public async Task DeleteAsyn(T entity)
+        public async Task DeleteAsync(T entity)
         {
             _dataContext.Set<T>().Remove(entity);
-            await SaveAllAsyn();
+            await SaveAllAsync();
         }
 
-        public async Task<bool> ExistAsyn(int id)
+        public async Task<bool> ExistAsync(int id)
         {
             return await _dataContext.Set<T>().AnyAsync(e => e.Id == id);
         }
 
-        public async Task<bool> SaveAllAsyn()
+        public async Task<bool> SaveAllAsync()
         {
             return await _dataContext.SaveChangesAsync() > 0;
         }
